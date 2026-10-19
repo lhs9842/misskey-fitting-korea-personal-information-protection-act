@@ -415,6 +415,24 @@ export class MiMeta {
 		length: 1024,
 		nullable: true,
 	})
+	public personalInfoCollectionUrl: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
+	public personalInfoThirdPartyUrl: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
+	public personalInfoOverseasUrl: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
 	public inquiryUrl: string | null;
 
 	@Column('varchar', {

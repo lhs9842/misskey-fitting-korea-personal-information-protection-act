@@ -5021,6 +5021,30 @@ export interface Locale extends ILocale {
      */
     "tosAndPrivacyPolicy": string;
     /**
+     * 個人情報の収集・利用への同意
+     */
+    "personalInfoCollection": string;
+    /**
+     * 個人情報の収集・利用への同意URL
+     */
+    "personalInfoCollectionUrl": string;
+    /**
+     * 個人情報の第三者提供への同意
+     */
+    "personalInfoThirdParty": string;
+    /**
+     * 個人情報の第三者提供への同意URL
+     */
+    "personalInfoThirdPartyUrl": string;
+    /**
+     * 個人情報の国外移転への同意
+     */
+    "personalInfoOverseas": string;
+    /**
+     * 個人情報の国外移転への同意URL
+     */
+    "personalInfoOverseasUrl": string;
+    /**
      * アイコンデコレーション
      */
     "avatarDecorations": string;

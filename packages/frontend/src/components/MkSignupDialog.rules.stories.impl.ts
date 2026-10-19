@@ -54,6 +54,9 @@ export const Empty = {
 		// @ts-expect-error serverRules is for test
 		serverRules: [],
 		tosUrl: null,
+		personalInfoCollectionUrl: null,
+		personalInfoThirdPartyUrl: null,
+		personalInfoOverseasUrl: null,
 	},
 	decorators: [
 		(_, context) => ({
@@ -62,10 +65,19 @@ export const Empty = {
 				instance.serverRules = context.args.serverRules;
 				// @ts-expect-error tosUrl is for test
 				instance.tosUrl = context.args.tosUrl;
+				// @ts-expect-error personalInfoCollectionUrl is for test
+				instance.personalInfoCollectionUrl = context.args.personalInfoCollectionUrl ?? null;
+				// @ts-expect-error personalInfoThirdPartyUrl is for test
+				instance.personalInfoThirdPartyUrl = context.args.personalInfoThirdPartyUrl ?? null;
+				// @ts-expect-error personalInfoOverseasUrl is for test
+				instance.personalInfoOverseasUrl = context.args.personalInfoOverseasUrl ?? null;
 				onBeforeUnmount(() => {
 					// FIXME: 呼び出されない
 					instance.serverRules = [];
 					instance.tosUrl = null;
+					instance.personalInfoCollectionUrl = null;
+					instance.personalInfoThirdPartyUrl = null;
+					instance.personalInfoOverseasUrl = null;
 				});
 			},
 			template: '<story/>',

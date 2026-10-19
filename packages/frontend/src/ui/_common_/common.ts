@@ -140,7 +140,37 @@ export function openInstanceMenu(ev: PointerEvent) {
 		});
 	}
 
-	if (instance.impressumUrl != null || instance.tosUrl != null || instance.privacyPolicyUrl != null) {
+	if (instance.personalInfoCollectionUrl) {
+		menuItems.push({
+			type: 'a',
+			text: i18n.ts.personalInfoCollection,
+			icon: 'ti ti-file-text',
+			href: instance.personalInfoCollectionUrl,
+			target: '_blank',
+		});
+	}
+
+	if (instance.personalInfoThirdPartyUrl) {
+		menuItems.push({
+			type: 'a',
+			text: i18n.ts.personalInfoThirdParty,
+			icon: 'ti ti-share',
+			href: instance.personalInfoThirdPartyUrl,
+			target: '_blank',
+		});
+	}
+
+	if (instance.personalInfoOverseasUrl) {
+		menuItems.push({
+			type: 'a',
+			text: i18n.ts.personalInfoOverseas,
+			icon: 'ti ti-world-upload',
+			href: instance.personalInfoOverseasUrl,
+			target: '_blank',
+		});
+	}
+
+	if (instance.impressumUrl != null || instance.tosUrl != null || instance.privacyPolicyUrl != null || instance.personalInfoCollectionUrl != null || instance.personalInfoThirdPartyUrl != null || instance.personalInfoOverseasUrl != null) {
 		menuItems.push({ type: 'divider' });
 	}
 

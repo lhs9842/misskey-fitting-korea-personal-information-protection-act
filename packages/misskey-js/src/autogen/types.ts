@@ -5551,6 +5551,9 @@ export type components = {
             impressumUrl: string | null;
             logoImageUrl: string | null;
             privacyPolicyUrl: string | null;
+            personalInfoCollectionUrl: string | null;
+            personalInfoThirdPartyUrl: string | null;
+            personalInfoOverseasUrl: string | null;
             inquiryUrl: string | null;
             serverRules: string[];
             themeColor: string | null;
@@ -9537,6 +9540,9 @@ export interface operations {
                         shortName: string | null;
                         objectStorageS3ForcePathStyle: boolean;
                         privacyPolicyUrl: string | null;
+                        personalInfoCollectionUrl: string | null;
+                        personalInfoThirdPartyUrl: string | null;
+                        personalInfoOverseasUrl: string | null;
                         inquiryUrl: string | null;
                         repositoryUrl: string | null;
                         feedbackUrl: string | null;
@@ -13027,6 +13033,9 @@ export interface operations {
                     feedbackUrl?: string | null;
                     impressumUrl?: string | null;
                     privacyPolicyUrl?: string | null;
+                    personalInfoCollectionUrl?: string | null;
+                    personalInfoThirdPartyUrl?: string | null;
+                    personalInfoOverseasUrl?: string | null;
                     inquiryUrl?: string | null;
                     useObjectStorage?: boolean;
                     objectStorageBaseUrl?: string | null;
