@@ -126,6 +126,9 @@ export const paramDef = {
 		feedbackUrl: { type: 'string', nullable: true },
 		impressumUrl: { type: 'string', nullable: true },
 		privacyPolicyUrl: { type: 'string', nullable: true },
+		personalInfoCollectionUrl: { type: 'string', nullable: true },
+		personalInfoThirdPartyUrl: { type: 'string', nullable: true },
+		personalInfoOverseasUrl: { type: 'string', nullable: true },
 		inquiryUrl: { type: 'string', nullable: true },
 		useObjectStorage: { type: 'boolean' },
 		objectStorageBaseUrl: { type: 'string', nullable: true },
@@ -532,6 +535,18 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 
 			if (ps.privacyPolicyUrl !== undefined) {
 				set.privacyPolicyUrl = ps.privacyPolicyUrl;
+			}
+
+			if (ps.personalInfoCollectionUrl !== undefined) {
+				set.personalInfoCollectionUrl = ps.personalInfoCollectionUrl;
+			}
+
+			if (ps.personalInfoThirdPartyUrl !== undefined) {
+				set.personalInfoThirdPartyUrl = ps.personalInfoThirdPartyUrl;
+			}
+
+			if (ps.personalInfoOverseasUrl !== undefined) {
+				set.personalInfoOverseasUrl = ps.personalInfoOverseasUrl;
 			}
 
 			if (ps.inquiryUrl !== undefined) {

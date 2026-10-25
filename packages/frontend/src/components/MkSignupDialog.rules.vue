@@ -43,6 +43,36 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<MkSwitch :modelValue="agreeTosAndPrivacyPolicy" style="margin-top: 16px;" @update:modelValue="updateAgreeTosAndPrivacyPolicy">{{ i18n.ts.agree }}</MkSwitch>
 			</MkFolder>
 
+			<MkFolder v-if="availablePersonalInfoCollection" :defaultOpen="true">
+				<template #label>{{ i18n.ts.personalInfoCollection }}</template>
+				<template #suffix><i v-if="agreePersonalInfoCollection" class="ti ti-check" style="color: var(--MI_THEME-success)"></i></template>
+				<div class="_gaps_s">
+					<div><a :href="instance.personalInfoCollectionUrl ?? undefined" class="_link" target="_blank">{{ i18n.ts.personalInfoCollection }} <i class="ti ti-external-link"></i></a></div>
+				</div>
+
+				<MkSwitch :modelValue="agreePersonalInfoCollection" style="margin-top: 16px;" @update:modelValue="updateAgreePersonalInfoCollection">{{ i18n.ts.agree }}</MkSwitch>
+			</MkFolder>
+
+			<MkFolder v-if="availablePersonalInfoThirdParty" :defaultOpen="true">
+				<template #label>{{ i18n.ts.personalInfoThirdParty }}</template>
+				<template #suffix><i v-if="agreePersonalInfoThirdParty" class="ti ti-check" style="color: var(--MI_THEME-success)"></i></template>
+				<div class="_gaps_s">
+					<div><a :href="instance.personalInfoThirdPartyUrl ?? undefined" class="_link" target="_blank">{{ i18n.ts.personalInfoThirdParty }} <i class="ti ti-external-link"></i></a></div>
+				</div>
+
+				<MkSwitch :modelValue="agreePersonalInfoThirdParty" style="margin-top: 16px;" @update:modelValue="updateAgreePersonalInfoThirdParty">{{ i18n.ts.agree }}</MkSwitch>
+			</MkFolder>
+
+			<MkFolder v-if="availablePersonalInfoOverseas" :defaultOpen="true">
+				<template #label>{{ i18n.ts.personalInfoOverseas }}</template>
+				<template #suffix><i v-if="agreePersonalInfoOverseas" class="ti ti-check" style="color: var(--MI_THEME-success)"></i></template>
+				<div class="_gaps_s">
+					<div><a :href="instance.personalInfoOverseasUrl ?? undefined" class="_link" target="_blank">{{ i18n.ts.personalInfoOverseas }} <i class="ti ti-external-link"></i></a></div>
+				</div>
+
+				<MkSwitch :modelValue="agreePersonalInfoOverseas" style="margin-top: 16px;" @update:modelValue="updateAgreePersonalInfoOverseas">{{ i18n.ts.agree }}</MkSwitch>
+			</MkFolder>
+
 			<MkFolder :defaultOpen="true">
 				<template #label>{{ i18n.ts.basicNotesBeforeCreateAccount }}</template>
 				<template #suffix><i v-if="agreeNote" class="ti ti-check" style="color: var(--MI_THEME-success)"></i></template>
@@ -76,13 +106,24 @@ import * as os from '@/os.js';
 const availableServerRules = instance.serverRules.length > 0;
 const availableTos = instance.tosUrl != null && instance.tosUrl !== '';
 const availablePrivacyPolicy = instance.privacyPolicyUrl != null && instance.privacyPolicyUrl !== '';
+const availablePersonalInfoCollection = instance.personalInfoCollectionUrl != null && instance.personalInfoCollectionUrl !== '';
+const availablePersonalInfoThirdParty = instance.personalInfoThirdPartyUrl != null && instance.personalInfoThirdPartyUrl !== '';
+const availablePersonalInfoOverseas = instance.personalInfoOverseasUrl != null && instance.personalInfoOverseasUrl !== '';
 
 const agreeServerRules = ref(false);
 const agreeTosAndPrivacyPolicy = ref(false);
+const agreePersonalInfoCollection = ref(false);
+const agreePersonalInfoThirdParty = ref(false);
+const agreePersonalInfoOverseas = ref(false);
 const agreeNote = ref(false);
 
 const agreed = computed(() => {
-	return (!availableServerRules || agreeServerRules.value) && ((!availableTos && !availablePrivacyPolicy) || agreeTosAndPrivacyPolicy.value) && agreeNote.value;
+	return (!availableServerRules || agreeServerRules.value)
+		&& ((!availableTos && !availablePrivacyPolicy) || agreeTosAndPrivacyPolicy.value)
+		&& (!availablePersonalInfoCollection || agreePersonalInfoCollection.value)
+		&& (!availablePersonalInfoThirdParty || agreePersonalInfoThirdParty.value)
+		&& (!availablePersonalInfoOverseas || agreePersonalInfoOverseas.value)
+		&& agreeNote.value;
 });
 
 const emit = defineEmits<{
@@ -129,6 +170,54 @@ async function updateAgreeTosAndPrivacyPolicy(v: boolean) {
 		agreeTosAndPrivacyPolicy.value = true;
 	} else {
 		agreeTosAndPrivacyPolicy.value = false;
+	}
+}
+
+async function updateAgreePersonalInfoCollection(v: boolean) {
+	if (v) {
+		const confirm = await os.confirm({
+			type: 'question',
+			title: i18n.ts.doYouAgree,
+			text: i18n.tsx.iHaveReadXCarefullyAndAgree({
+				x: i18n.ts.personalInfoCollection,
+			}),
+		});
+		if (confirm.canceled) return;
+		agreePersonalInfoCollection.value = true;
+	} else {
+		agreePersonalInfoCollection.value = false;
+	}
+}
+
+async function updateAgreePersonalInfoThirdParty(v: boolean) {
+	if (v) {
+		const confirm = await os.confirm({
+			type: 'question',
+			title: i18n.ts.doYouAgree,
+			text: i18n.tsx.iHaveReadXCarefullyAndAgree({
+				x: i18n.ts.personalInfoThirdParty,
+			}),
+		});
+		if (confirm.canceled) return;
+		agreePersonalInfoThirdParty.value = true;
+	} else {
+		agreePersonalInfoThirdParty.value = false;
+	}
+}
+
+async function updateAgreePersonalInfoOverseas(v: boolean) {
+	if (v) {
+		const confirm = await os.confirm({
+			type: 'question',
+			title: i18n.ts.doYouAgree,
+			text: i18n.tsx.iHaveReadXCarefullyAndAgree({
+				x: i18n.ts.personalInfoOverseas,
+			}),
+		});
+		if (confirm.canceled) return;
+		agreePersonalInfoOverseas.value = true;
+	} else {
+		agreePersonalInfoOverseas.value = false;
 	}
 }
 

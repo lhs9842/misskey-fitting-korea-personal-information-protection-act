@@ -274,6 +274,18 @@ export const packedMetaLiteSchema = {
 			type: 'string',
 			optional: false, nullable: true,
 		},
+		personalInfoCollectionUrl: {
+			type: 'string',
+			optional: false, nullable: true,
+		},
+		personalInfoThirdPartyUrl: {
+			type: 'string',
+			optional: false, nullable: true,
+		},
+		personalInfoOverseasUrl: {
+			type: 'string',
+			optional: false, nullable: true,
+		},
 		inquiryUrl: {
 			type: 'string',
 			optional: false, nullable: true,

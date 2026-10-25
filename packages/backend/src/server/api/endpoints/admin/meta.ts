@@ -482,6 +482,18 @@ export const meta = {
 				type: 'string',
 				optional: false, nullable: true,
 			},
+			personalInfoCollectionUrl: {
+				type: 'string',
+				optional: false, nullable: true,
+			},
+			personalInfoThirdPartyUrl: {
+				type: 'string',
+				optional: false, nullable: true,
+			},
+			personalInfoOverseasUrl: {
+				type: 'string',
+				optional: false, nullable: true,
+			},
 			inquiryUrl: {
 				type: 'string',
 				optional: false, nullable: true,
@@ -659,6 +671,9 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				feedbackUrl: instance.feedbackUrl,
 				impressumUrl: instance.impressumUrl,
 				privacyPolicyUrl: instance.privacyPolicyUrl,
+				personalInfoCollectionUrl: instance.personalInfoCollectionUrl,
+				personalInfoThirdPartyUrl: instance.personalInfoThirdPartyUrl,
+				personalInfoOverseasUrl: instance.personalInfoOverseasUrl,
 				inquiryUrl: instance.inquiryUrl,
 				disableRegistration: instance.disableRegistration,
 				emailRequiredForSignup: instance.emailRequiredForSignup,

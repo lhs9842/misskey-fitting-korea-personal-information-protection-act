@@ -65,6 +65,27 @@ SPDX-License-Identifier: AGPL-3.0-only
 								</MkInput>
 							</SearchMarker>
 
+							<SearchMarker :keywords="['personalInfoCollection', 'privacy']">
+								<MkInput v-model="infoForm.state.personalInfoCollectionUrl" type="url">
+									<template #label><SearchLabel>{{ i18n.ts.personalInfoCollectionUrl }}</SearchLabel><span v-if="infoForm.modifiedStates.personalInfoCollectionUrl" class="_modified">{{ i18n.ts.modified }}</span></template>
+									<template #prefix><i class="ti ti-link"></i></template>
+								</MkInput>
+							</SearchMarker>
+
+							<SearchMarker :keywords="['personalInfoThirdParty', 'privacy']">
+								<MkInput v-model="infoForm.state.personalInfoThirdPartyUrl" type="url">
+									<template #label><SearchLabel>{{ i18n.ts.personalInfoThirdPartyUrl }}</SearchLabel><span v-if="infoForm.modifiedStates.personalInfoThirdPartyUrl" class="_modified">{{ i18n.ts.modified }}</span></template>
+									<template #prefix><i class="ti ti-link"></i></template>
+								</MkInput>
+							</SearchMarker>
+
+							<SearchMarker :keywords="['personalInfoOverseas', 'privacy']">
+								<MkInput v-model="infoForm.state.personalInfoOverseasUrl" type="url">
+									<template #label><SearchLabel>{{ i18n.ts.personalInfoOverseasUrl }}</SearchLabel><span v-if="infoForm.modifiedStates.personalInfoOverseasUrl" class="_modified">{{ i18n.ts.modified }}</span></template>
+									<template #prefix><i class="ti ti-link"></i></template>
+								</MkInput>
+							</SearchMarker>
+
 							<SearchMarker :keywords="['inquiry', 'contact']">
 								<MkInput v-model="infoForm.state.inquiryUrl" type="url">
 									<template #label><SearchLabel>{{ i18n.ts._serverSettings.inquiryUrl }}</SearchLabel><span v-if="infoForm.modifiedStates.inquiryUrl" class="_modified">{{ i18n.ts.modified }}</span></template>
@@ -414,6 +435,9 @@ const infoForm = useForm({
 	maintainerEmail: meta.maintainerEmail ?? '',
 	tosUrl: meta.tosUrl ?? '',
 	privacyPolicyUrl: meta.privacyPolicyUrl ?? '',
+	personalInfoCollectionUrl: meta.personalInfoCollectionUrl ?? '',
+	personalInfoThirdPartyUrl: meta.personalInfoThirdPartyUrl ?? '',
+	personalInfoOverseasUrl: meta.personalInfoOverseasUrl ?? '',
 	inquiryUrl: meta.inquiryUrl ?? '',
 	repositoryUrl: meta.repositoryUrl ?? '',
 	impressumUrl: meta.impressumUrl ?? '',
@@ -426,6 +450,9 @@ const infoForm = useForm({
 		maintainerEmail: state.maintainerEmail,
 		tosUrl: state.tosUrl,
 		privacyPolicyUrl: state.privacyPolicyUrl,
+		personalInfoCollectionUrl: state.personalInfoCollectionUrl,
+		personalInfoThirdPartyUrl: state.personalInfoThirdPartyUrl,
+		personalInfoOverseasUrl: state.personalInfoOverseasUrl,
 		inquiryUrl: state.inquiryUrl,
 		repositoryUrl: state.repositoryUrl,
 		impressumUrl: state.impressumUrl,

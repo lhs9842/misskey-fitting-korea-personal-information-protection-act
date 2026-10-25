@@ -88,6 +88,18 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<template #icon><i class="ti ti-shield-lock"></i></template>
 					<template #default>{{ i18n.ts.privacyPolicy }}</template>
 				</FormLink>
+				<FormLink v-if="instance.personalInfoCollectionUrl" :to="instance.personalInfoCollectionUrl" external>
+					<template #icon><i class="ti ti-file-text"></i></template>
+					<template #default>{{ i18n.ts.personalInfoCollection }}</template>
+				</FormLink>
+				<FormLink v-if="instance.personalInfoThirdPartyUrl" :to="instance.personalInfoThirdPartyUrl" external>
+					<template #icon><i class="ti ti-share"></i></template>
+					<template #default>{{ i18n.ts.personalInfoThirdParty }}</template>
+				</FormLink>
+				<FormLink v-if="instance.personalInfoOverseasUrl" :to="instance.personalInfoOverseasUrl" external>
+					<template #icon><i class="ti ti-world-upload"></i></template>
+					<template #default>{{ i18n.ts.personalInfoOverseas }}</template>
+				</FormLink>
 				<FormLink v-if="instance.feedbackUrl" :to="instance.feedbackUrl" external>
 					<template #icon><i class="ti ti-message"></i></template>
 					<template #default>{{ i18n.ts.feedback }}</template>
